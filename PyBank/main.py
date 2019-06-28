@@ -31,14 +31,17 @@ with open(budget_data_csv_path, newline='') as csvfile:
         month_count+=1
         money+=int(row[1]) 
 
-        if abs(profit_losses[counter]-(profit_losses[counter-1])) > min:
+        if abs(profit_losses[counter]-(profit_losses[counter-1])) > min and profit_losses[counter]<profit_losses[counter-1]:
             min=abs(profit_losses[counter-1]-int(row[1]))
             min_month=row[0]
-        if (profit_losses[counter]-(profit_losses[counter-1])) > max:
-            max=(profit_losses[counter-1]-int(row[1]))
+
+        if (profit_losses[counter])-(profit_losses[counter-1]) > max and profit_losses[counter]>profit_losses[counter-1] :
+            max=profit_losses[counter]-profit_losses[counter-1]
             max_month=row[0]
-        
         counter+=1
+        
+        
+        
 
 
 
