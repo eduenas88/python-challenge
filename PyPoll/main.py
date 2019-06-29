@@ -40,4 +40,12 @@ print(f"Correy : {correy/votes*100:,.3f}% ({correy})")
 print(f"Li : {li/votes*100:,.3f}% ({li})")
 print(f"O'Tooley : {o_tooley/votes*100:,.3f}% ({o_tooley})")    
 print(f"--------------------")    
-print(str(max(khan,li,correy,o_tooley)))
+if khan > li and khan > correy and khan > o_tooley:
+    print("Winner: Khan")
+elif li > khan and li > correy and li > o_tooley:
+    print("Winner: Li")
+elif correy > khan and correy > li and correy > o_tooley: 
+    print("Winner: Correy")
+else:  
+    print("Winner: O'Tooley")
+print(f"--------------------") 
