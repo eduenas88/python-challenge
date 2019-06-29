@@ -16,13 +16,10 @@ with open(budget_data_csv_path, newline='') as csvfile:
     #Set variables to zero 
     month_count = 0
     money = 0
-    average = 0
-
     min = 0
     max = 0
-
-    counter = 0
-
+    i = 0
+    total = 0
 
     for row in csv_reader:
         dates.append(row[0])
@@ -31,23 +28,24 @@ with open(budget_data_csv_path, newline='') as csvfile:
         month_count+=1
         money+=int(row[1]) 
 
-        if abs(profit_losses[counter]-(profit_losses[counter-1])) > min and profit_losses[counter]<profit_losses[counter-1]:
-            min=abs(profit_losses[counter-1]-int(row[1]))
+        if i >= 1:
+            total+= profit_losses[i]-(profit_losses[i-1])
+
+        if profit_losses[i]-(profit_losses[i-1]) < min:
+            min=profit_losses[i]-(profit_losses[i-1])
             min_month=row[0]
 
-        if (profit_losses[counter])-(profit_losses[counter-1]) > max and profit_losses[counter]>profit_losses[counter-1] :
-            max=profit_losses[counter]-profit_losses[counter-1]
+        if (profit_losses[i])-(profit_losses[i-1]) > max:
+            max=profit_losses[i]-profit_losses[i-1]
             max_month=row[0]
-        counter+=1
-        
-        
+        i+=1
 
     print("Financial Analysis")
     print(f"--------------------")
     print(f"Total Months: {month_count}")
     print(f"Total : ${money}")
-    #print(f"Average Change : {money/month_count}")
-    print(f"Greatest Increase in Profit : {max_month} {max}")
-    print(f"Greatest Decrease in Profit : {min_month} $({min*-1})")
+    print(f"Average Change : (${total/(len(profit_losses)-1):,.2f})")
+    print(f"Greatest Increase in Profit : {max_month} (${max})")
+    print(f"Greatest Decrease in Profit : {min_month} (${min})")
 
  
