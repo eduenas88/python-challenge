@@ -41,12 +41,6 @@ with open(budget_data_csv_path, newline='') as csvfile:
         counter+=1
         
         
-        
-
-
-
-
-           
 
     print("Financial Analysis")
     print(f"--------------------")
@@ -54,6 +48,6 @@ with open(budget_data_csv_path, newline='') as csvfile:
     print(f"Total : ${money}")
     #print(f"Average Change : {money/month_count}")
     print(f"Greatest Increase in Profit : {max_month} {max}")
-    print(f"Greatest Decrease in Profit : {min_month} ${min*-1}")
+    print(f"Greatest Decrease in Profit : {min_month} $({min*-1})")
 
  
