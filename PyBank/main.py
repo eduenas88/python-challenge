@@ -20,6 +20,7 @@ with open(budget_data_csv_path, newline='') as csvfile:
     max = 0
     i = 0
     total = 0
+    output_path = "PyBank_Analysis.txt"
 
     for row in csv_reader:
         dates.append(row[0])
@@ -40,12 +41,17 @@ with open(budget_data_csv_path, newline='') as csvfile:
             max_month=row[0]
         i+=1
 
-    print("Financial Analysis")
-    print(f"--------------------")
-    print(f"Total Months: {month_count}")
-    print(f"Total : ${money}")
-    print(f"Average Change : (${total/(len(profit_losses)-1):,.2f})")
-    print(f"Greatest Increase in Profit : {max_month} (${max})")
-    print(f"Greatest Decrease in Profit : {min_month} (${min})")
+with open(output_path, "w", newline='') as textfile:
+    print("Financial Analysis", file=textfile)
+    print(f"--------------------", file=textfile)
+    print(f"Total Months: {month_count}", file=textfile)
+    print(f"Total : ${money}", file=textfile)
+    print(f"Average Change : (${total/(len(profit_losses)-1):.2f})", file=textfile)
+    print(f"Greatest Increase in Profit : {max_month} (${max})", file=textfile)
+    print(f"Greatest Decrease in Profit : {min_month} (${min})", file=textfile)
 
+with open(output_path, newline='') as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+    for row in csvreader:
+        print(row)
  
